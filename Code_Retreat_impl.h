@@ -23,6 +23,5 @@ class Cell{
 public:
   bool current_state;
   Cell *neighbour[8];
-  void update();
   bool next_state;
 };

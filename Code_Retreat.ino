@@ -1,6 +1,10 @@
 #include "Code_Retreat_impl.h"
-#define ARRAY_SIZE 50
+#define ARRAY_SIZE 56
 #define DELAY 100 // Delay getween generations
+
+//#define DRAW_ASTERISK
+//#define DRAW_QUAD
+#define DRAW_NONA
 
 Cell cell_map[ARRAY_SIZE][ARRAY_SIZE];
 
@@ -38,10 +42,7 @@ void update_state(void) {
      }
    }
   }
-  next_generation();
-}
 
-void next_generation(void) {
   for(int y = 0; y < ARRAY_SIZE; ++y){
     for(int x = 0; x < ARRAY_SIZE; ++x){
       cell_map[x][y].current_state = cell_map[x][y].next_state;
