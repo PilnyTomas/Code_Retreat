@@ -24,12 +24,21 @@ SPIClass TFT_SPI = SPIClass(HSPI);
 Adafruit_ILI9341 tft = Adafruit_ILI9341(&TFT_SPI, TFT_DC, TFT_CS, TFT_RST);
 
 void draw(){
-  printf("Draw stuff...\n");
   tft.fillScreen(BLACK);
   for(int y = 0; y < ARRAY_SIZE; ++y){
     for(int x = 0; x < ARRAY_SIZE; ++x){
       //printf("[%d][%d]=%d\n",x,y,cell_map[x][y].current_state);
-      tft.setCursor(3+x*10, 3+y*10); tft.printf(cell_map[x][y].current_state ? "*" : " ");
+
+      // Print small arrays as asterisks
+      //tft.setCursor(3+x*10, 3+y*10); tft.printf(cell_map[x][y].current_state ? "*" : " ");
+
+      // Print large arrays as quad pixel
+      if(cell_map[x][y].current_state){
+        tft.drawPixel(2*x, 2*y, YELLOW);
+        tft.drawPixel(2*x+1, 2*y, YELLOW);
+        tft.drawPixel(2*x, 2*y+1, YELLOW);
+        tft.drawPixel(2*x+1, 2*y+1, YELLOW);
+      }
     }
   }
 }
