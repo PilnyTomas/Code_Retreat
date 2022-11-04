@@ -24,7 +24,5 @@ public:
   bool current_state;
   Cell *neighbour[8];
   void update();
-
-private:
   bool next_state;
 };
